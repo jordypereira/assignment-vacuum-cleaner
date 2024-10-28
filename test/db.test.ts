@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
-import { Pool } from 'pg'
-import { storeExecution, initializeDb } from './db'
+import { storeExecution, initializeDb } from '../server/utils/db'
+import pg from 'pg'
 
+const { Pool } = pg
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 })

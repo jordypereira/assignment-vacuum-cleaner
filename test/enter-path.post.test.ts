@@ -28,4 +28,18 @@ describe('startJob', () => {
     expect(output.Result).toBe(11)
     expect(output.Duration).toBeGreaterThanOrEqual(0)
   })
+
+  it('should call the API route and return the correct response', async () => {
+    const input = {
+      start: { x: 0, y: 0 },
+      commands: [{ direction: 'east', steps: 10 }],
+    }
+
+    const data = await $fetch('/tibber-developer-test/enter-path', {
+      method: 'POST',
+      body: input,
+    })
+
+    expect(data).toHaveProperty('ID')
+  })
 })
