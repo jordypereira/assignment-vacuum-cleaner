@@ -5,3 +5,8 @@ dist
 .cache
 .output
 .env
+
+# Coverage reports
+coverage
+*.lcov
+.nyc_output

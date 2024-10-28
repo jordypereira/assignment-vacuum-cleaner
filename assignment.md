@@ -1,12 +1,15 @@
 # Tibber Platform environment
+
 The Tibber platform consists of a swarm of microservices running as
 Docker containers. The primary development platforms are .NET,
 Node JS and Python in conjunction with other technologies. Our
 main ways of data storage are through PostgreSQL as
 relational/document storage and Amazon S3 as blob storage.
-Technical Case
+
+## Technical Case
+
 Create a new microservice that could fit into the Tibber Platform environment as
-described above. The created service will simulate a robot moving in an oce space
+described above. The created service will simulate a robot moving in an office space
 and will be cleaning the places this robot visits. The path of the robot's movement is
 described by the starting coordinates and move commands. After the cleaning has
 been done, the robot reports the number of unique places cleaned. The service will
@@ -41,12 +44,12 @@ Stored record example:
 ID Timestamp Commands Result Duration
 1234 2018-05-12 12:45:10.851596 2 4 0.000123
 Notes
-● You can assume, for the sake of simplicity, that the oce can be viewed as a
+● You can assume, for the sake of simplicity, that the office can be viewed as a
 grid where the robot moves only on the vertices.
 ● The robot cleans at every vertex it touches, not just where it stops.
 ● All input should be considered well formed and syntactically correct. There is no
 need, therefore, to implement elaborate input validation.
-● The robot will never be sent outside the bounds of the oce.
+● The robot will never be sent outside the bounds of the office.
 ● Ensure that database connection is configurable using environment variable.
 ● Think about structure, readability, maintainability, performance, re-usability and
 test-ability of the code. Like the solution is going to be deployed into the

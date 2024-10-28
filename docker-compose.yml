@@ -4,7 +4,7 @@ services:
   app:
     build: .
     ports:
-      - "5000:5000"
+      - '5000:5000'
     environment:
       - DATABASE_URL=postgres://yourusername:yourpassword@db:5432/nitro
 
@@ -15,4 +15,4 @@ services:
       POSTGRES_PASSWORD: yourpassword
       POSTGRES_DB: nitro
     ports:
-      - "5432:5432"
+      - '5432:5432'
