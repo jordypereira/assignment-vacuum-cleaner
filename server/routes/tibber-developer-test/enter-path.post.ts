@@ -33,8 +33,6 @@ ID Timestamp Commands Result Duration
  */
 
 const Output = z.object({
-  ID: z.string(),
-  Timestamp: z.string(),
   Commands: z.number(),
   Result: z.number(),
   Duration: z.number(),
@@ -48,18 +46,14 @@ export function startJob(input: Input): Output {
   const commands = input.commands
 
   const startTime = performance.now()
-  const vacuumCleaner = new VacuumCleaner()
-  vacuumCleaner.traverse(start, commands)
+  const vacuumCleaner = new VacuumCleaner(start)
+  vacuumCleaner.traverse(commands)
 
   const endTime = performance.now()
   const duration = endTime - startTime
-  const timestamp = new Date().toISOString().split('T').join(' ').split('Z')[0]
   const result = vacuumCleaner.result()
-  const id = crypto.randomUUID()
 
   const output: Output = {
-    ID: id,
-    Timestamp: timestamp,
     Commands: commands.length,
     Result: result,
     Duration: duration,
@@ -76,6 +70,9 @@ export default async function defineEventHandler(event) {
 
   const output = startJob(body)
   console.log('🚀 ~ defineEventHandler ~ output:', output)
+
+  const dbEntry = await storeExecution(output.Commands, output.Result, output.Duration)
+  console.log("🚀 ~ defineEventHandler ~ dbEntry:", dbEntry)
 
   return output
 }
