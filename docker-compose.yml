@@ -1,18 +1,21 @@
-version: '3.8'
-
 services:
   app:
     build: .
     ports:
       - '5000:5000'
     environment:
-      - DATABASE_URL=postgres://yourusername:yourpassword@db:5432/nitro
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/robot_cleaner
+    depends_on:
+      - db
 
   db:
-    image: postgres
+    image: postgres:16-alpine
     environment:
-      POSTGRES_USER: yourusername
-      POSTGRES_PASSWORD: yourpassword
-      POSTGRES_DB: nitro
-    ports:
-      - '5432:5432'
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=robot_cleaner
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

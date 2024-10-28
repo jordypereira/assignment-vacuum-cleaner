@@ -16,7 +16,7 @@ describe('startJob', () => {
   it('should return the correct output', () => {
     const input = {
       start: { x: 0, y: 0 },
-      commands: [{ direction: 'north', steps: 10 }],
+      commands: [{ direction: 'east', steps: 10 }],
     }
 
     // @ts-expect-error

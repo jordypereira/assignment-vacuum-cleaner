@@ -1,8 +1,16 @@
+type Point = { x: number; y: number }
+
 export class VacuumCleaner {
+  private currentPosition: Point
   private visitedSquares = new Set<string>()
 
-  visitSquare(x: number, y: number) {
-    this.visitedSquares.add(`${x},${y}`)
+  constructor(startPosition: Point) {
+    this.currentPosition = { ...startPosition }
+    this.visitSquare(this.currentPosition)
+  }
+
+  visitSquare(point: Point) {
+    this.visitedSquares.add(`${point.x},${point.y}`)
   }
 
   result() {
@@ -30,18 +38,14 @@ export class VacuumCleaner {
     }
   }
 
-  traverse(start: { x: number; y: number }, commands: { direction: string; steps: number }[]) {
-    let x = start.x
-    let y = start.y
-
-    this.visitSquare(start.x, start.y)
-
+  traverse(commands: { direction: string; steps: number }[]) {
     for (const command of commands) {
       for (let i = 0; i < command.steps; i++) {
+        let { x, y } = this.currentPosition
         const { x: newX, y: newY } = this.step(x, y, command.direction)
         x = newX
         y = newY
-        this.visitSquare(x, y)
+        this.visitSquare({ x, y })
       }
     }
   }
