@@ -41,11 +41,11 @@ export class VacuumCleaner {
   traverse(commands: { direction: string; steps: number }[]) {
     for (const command of commands) {
       for (let i = 0; i < command.steps; i++) {
-        let { x, y } = this.currentPosition
+        const { x, y } = this.currentPosition
         const { x: newX, y: newY } = this.step(x, y, command.direction)
-        x = newX
-        y = newY
-        this.visitSquare({ x, y })
+
+        this.currentPosition = { x: newX, y: newY }
+        this.visitSquare(this.currentPosition)
       }
     }
   }

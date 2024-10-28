@@ -24,7 +24,7 @@ Look at the [nitro quick start](https://nitro.unjs.io/guide#quick-start) to lear
 ```json
 {
   "Commands": 1,
-  "Result": 2,
+  "Result": 11,
   "Duration": 0.1733389999717474
 }
 ```

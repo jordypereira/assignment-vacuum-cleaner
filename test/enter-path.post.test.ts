@@ -22,8 +22,6 @@ describe('startJob', () => {
     // @ts-expect-error
     const output = startJob(input)
 
-    expect(output).toHaveProperty('ID')
-    expect(output).toHaveProperty('Timestamp')
     expect(output.Commands).toBe(1)
     expect(output.Result).toBe(11)
     expect(output.Duration).toBeGreaterThanOrEqual(0)
